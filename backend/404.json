@@ -1,0 +1,10 @@
+{
+    "error": true,
+    "message": "API endpoint not found",
+    "code": 404,
+    "timestamp": "2024-01-01T00:00:00Z",
+    "available_endpoints": [
+        "/kagomori/backend/get_timesheet.php",
+        "/kagomori/backend/test_connection.php"
+    ]
+}

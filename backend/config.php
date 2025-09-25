@@ -1,18 +1,27 @@
 <?php
-// config.php
+// config.php - Development configuration
 
-$serverName = "192.168.10.80\MSSQLSERVER19"; // แก้เป็น IP SQL Server
+$serverName = "192.168.10.80\\MSSQLSERVER19";
 $connectionOptions = array(
-    "Database" => "NAVTILIV", // ชื่อฐานข้อมูล
-    "Uid" => "sa",              // แก้ให้เหมาะสม
-    "PWD" => "password",       // แก้ให้เหมาะสม
-    "CharacterSet" => "UTF-8"
+    "Database" => "NAVTILIV",
+    "Uid" => "sa",
+    "PWD" => "password",
+    "CharacterSet" => "UTF-8",
+    "TrustServerCertificate" => true
 );
 
-// เชื่อมต่อฐานข้อมูล
 $conn = sqlsrv_connect($serverName, $connectionOptions);
 
 if (!$conn) {
-    die(print_r(sqlsrv_errors(), true));
+    $errors = sqlsrv_errors();
+    error_log("SQL Server connection failed: " . print_r($errors, true));
+    throw new Exception("Database connection failed: " . json_encode($errors));
 }
-?>
+
+// Enable error reporting for development
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Enable error reporting for development
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
